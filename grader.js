@@ -41,7 +41,6 @@ var assertFileExists = function(infile) {
 };
 
 var assertURLExists = function(url) {
-    //assertTrue(url, 'URL should not be null');
     return url;
 };
 
@@ -93,8 +92,7 @@ if(require.main == module) {
         .parse(process.argv);
     
     if(program.url) {
-      //rest.get(program.url).on('complete', callback);
-	  var retdata; 
+      	  var retdata; 
 
 	  rest.get(program.url).on('complete', function(data) {
 	      //sys.puts(data); // prints html page source stored in 'data' to screen
@@ -103,14 +101,16 @@ if(require.main == module) {
 	var checkJson = checkHtmlFile(program.file, program.checks);	  
     }
     else if (program.file) {
-      var checkJson = checkHtmlFile(program.file, program.checks);
+	var checkJson = checkHtmlFile(program.file, program.checks);
     }
     else {
-      console.log("Please present a file or an url as parameter.");
+	console.log("Please present a file or an url as parameter.");
     }
 	
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
-} else {
+}
+else
+{
     exports.checkHtmlFile = checkHtmlFile;
 }
