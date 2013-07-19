@@ -41,7 +41,7 @@ var assertFileExists = function(infile) {
 };
 
 var assertURLExists = function(url) {
-    assertTrue(url, 'URL should not be null');
+    //assertTrue(url, 'URL should not be null');
     return url;
 };
 
@@ -92,14 +92,15 @@ if(require.main == module) {
         .option('-u, --url <url>', 'Path to External URL', clone(assertURLExists), URL_DEFAULT)
         .parse(process.argv);
     
- if(program.url) {
+    if(program.url) {
       //rest.get(program.url).on('complete', callback);
-	  
-	  
+	  var retdata; 
+
 	  rest.get(program.url).on('complete', function(data) {
-	sys.puts(data); // prints html page source stored in 'data' to screen
-});
-	  
+	      //sys.puts(data); // prints html page source stored in 'data' to screen
+	      retdata = data;
+	  });
+	var checkJson = checkHtmlFile(program.file, program.checks);	  
     }
     else if (program.file) {
       var checkJson = checkHtmlFile(program.file, program.checks);
